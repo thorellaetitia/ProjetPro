@@ -30,20 +30,16 @@ include_once('controllers/controllermesevenements.php');
         include_once ('navbar.php');
         ?>
         <div class="container-fluid">
-            <div class="row m-2 justify-content-between mt-2">
-                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12  btn btn-outline-warning btn-sm ml-1">
-                    <a href="index.php">Fermer</a>
+            <div class="row justify-content-between mt-2">
+                <div class="btn btn-outline-warning btn-sm ml-1">
+                    <a href="index.php">Retour site</a>
                 </div>
-                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12  btn btn-outline-warning btn-sm mr-1">
-                    <a href="index.php">créer mes événements</a>
-                </div>
-                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 btn btn-outline-warning btn-sm mr-1">
+                <div class="btn btn-outline-warning btn-sm mr-1">
                     <a href="moncompte.php">retour mon compte</a>
                 </div>
             </div>
             <div class="text-center">                        
                 <h1 class="mt-5"><i class="myevents mx-auto"></i>Mes événements</h1>
-
                 <!-- MODAL CONFIRMATION SUPPRESSION EVENEMENT -->
                 <div class="modal fade" id="deleteEvent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -68,46 +64,45 @@ include_once('controllers/controllermesevenements.php');
             </div>
             <div class="row">
                 <?php
-                foreach ($resultAllDataEvent as $events) {
+                foreach ($arrayProfileEvent as $event) {
                     ?>
                     <div class="col-sm-12 col-md-8 col-lg-8 mx-auto">
                         <div class="containerevent">
                             <div class="card-media">
                                 <div class="card-media-object-container">
-                                    <div class="card-media-object" style="background-image: url(img/<?= $events->event_picture ?>);"></div>
+                                    <div class="card-media-object" style="background-image: url(img/<?= $event->event_picture ?>);"></div>
                                     <ul class="card-media-object-social-list d-flex justify-content-between">
                                         <li class="d-xl-none d-lg-none d-md-block d-sm-block d-xs-block rounded-circle bg-warning ml-1 mb-2">
-                                            <a href="mesevenements.php?id=<?= $events->event_id ?>"><i class="mx-auto far fa-trash-alt pt-2 text-dark"></i></a>
+                                            <a href="mesevenements.php?id=<?= $event->event_id ?>"><i class="mx-auto far fa-trash-alt pt-2 text-dark"></i></a>
                                         </li>
                                         <li class="d-xl-none d-lg-none d-md-block d-sm-block d-xs-block rounded-circle bg-warning ml-1 mb-2">
-                                            <a href="modifyevent.php?id=<?= $events->event_id ?>"><i class="mx-auto fas fa-pencil-alt pt-2 text-dark"></i></a>
+                                            <a href="modifyevent.php?id=<?= $event->event_id ?>"><i class="mx-auto fas fa-pencil-alt pt-2 text-dark"></i></a>
                                         </li>
                                         <li class="rounded-circle bg-warning ml-1 mb-2" data-container="body" data-toggle="popover"
-                                            data-trigger="hover" data-placement="top" data-content="<?= $events->event_description ?>">
+                                            data-trigger="hover" data-placement="top" data-content="<?= $event->event_description ?>">
                                             <i class="mx-auto fas fa-search-plus text-dark pt-2"></i>
                                         </li>
                                     </ul>
                                 </div>
                                 <!-- body container -->
-                                <div class="card-media-body col-sm-12 col-md-8 col-lg-8 mx-auto <?= $events->eventcategory_name ?>">
+                                <div class="card-media-body col-sm-12 col-md-8 col-lg-8 mx-auto <?= $event->eventcategory_name ?>">
                                     <div class="card-media-body-top">
-                                        <span class="subtle"> <?= $newdate = date('d/m/Y', strtotime($events->event_date)) ?> à <?= $newdate2 = date('H:i', strtotime($events->event_time)) ?></span>
+                                        <span class="subtle"> <?= $newdate = date('d/m/Y', strtotime($event->event_date)) ?> à <?= $newdate2 = date('H:i', strtotime($event->event_time)) ?></span>
                                         <div class="card-media-body-top-icons u-float-right d-flex justify-content-between ">
-                                            <!--mesevenements.php?id=<?= $events->event_id ?>-->
-                                            <a data-toggle="modal" data-target="#deleteEvent" data-delete-id="<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none delete-event">Supprimer</a>
-                                            <a href="modifyevent.php?id=<?= $events->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Modifier</a>
+                                            <a data-toggle="modal" data-target="#deleteEvent" data-delete-id="<?= $event->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none delete-event">Supprimer</a>
+                                            <a href="modifyevent.php?id=<?= $event->event_id ?>" class="btn btn-outline-warning btn-sm d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">Modifier</a>
                                         </div>
-                                        <span class="card-media-body-heading small d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none"><?= $events->event_title; ?></span>
+                                        <span class="card-media-body-heading small d-none d-xl-block d-lg-block d-md-none d-sm-none d-xs-none"><?= $event->event_title; ?></span>
                                         <a class="card-media-body-heading small d-xl-none d-lg-none d-md-block d-sm-block d-xs-block"  data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover" data-title="<?= ($events->event_title); ?>"><?= substr($events->event_title, 0, 15); ?>...</a>
 
 
                                     </div>
                                     <div class="card-media-body-supporting-bottom">
-                                        <span class="card-media-body-supporting-bottom-text subtle"><?= $events->showplaces_name ?></span>
-                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right"><?= $events->eventsub_category_name ?></span>
+                                        <span class="card-media-body-supporting-bottom-text subtle"><?= $event->showplaces_name ?></span>
+                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right"><?= $event->eventsub_category_name ?></span>
                                     </div>
                                     <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
-                                        <span class="card-media-body-supporting-bottom-text subtle">#<?= $events->eventcategory_name ?></span>
+                                        <span class="card-media-body-supporting-bottom-text subtle">#<?= $event->eventcategory_name ?></span>
                                         <a href="https://www.digitick.com/" class="card-media-body-supporting-bottom-text card-media-link u-float-right"><img src="assets/images/digitick.jpg" width="50px" /></a>
                                     </div>
                                 </div>
@@ -119,7 +114,7 @@ include_once('controllers/controllermesevenements.php');
                 }
                 ?>
             </div>
-<!--            //creation d'un bouton SCROLL TO TOP//-->-->
+            <!--            //creation d'un bouton SCROLL TO TOP//-->
             <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-circle-up"></i></button> 
         </div>
 

@@ -54,8 +54,8 @@ if (isset($_POST['connectBtn'])) { // au clic du bouton, on lance les vérificat
                 $_SESSION['usertypes_id'] = $dataUser->usertypes_id;
                 $_SESSION['userlogin'] = true;
                 $_SESSION['userconnectedOK'] = true;
-                //si tout est ok on se dirige vers la page moncompte.php
-                header('Location: moncompte.php');
+                //si tout est ok on se dirige vers la page mesevenements.php
+                header('Location: mesevenements.php');
                 exit();
                 //sinon
             } else { 

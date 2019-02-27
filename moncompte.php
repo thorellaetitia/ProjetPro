@@ -28,7 +28,7 @@ include_once('controllers/controllermoncompte.php');
         <div class="container-fluid">
             <div class="row justify-content-between mt-2">
                 <div class="btn btn-outline-warning btn-sm ml-1">
-                    <a href="index.php">Fermer</a>
+                    <a href="index.php">Retour site</a>
                 </div>
                 <div class="btn btn-outline-warning btn-sm mr-1">
                     <a href="mesevenements.php">mes événements</a>
@@ -39,16 +39,35 @@ include_once('controllers/controllermoncompte.php');
             </div>
 
             <div class="row">
-
-                <div class="col-sm-12 col-md-8 col-lg-8">
-                    <div class="containerevent">
-
+                <?php
+                foreach ($arrayProfileUser as $profileUser) {
+                    ?>
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="card" >
+                            <i class="far fa-user fa-4x mr-2"></i>
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $profileUser-> users_name ?>Card title</h5>
+                                <p class="card-text"><?= $profileUser-> users_firstname ?> </p>
+                                <p class="card-text"><?= $profileUser-> usertypes_id ?> </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><?= $profileUser-> users_mail ?></li>
+                                <li class="list-group-item"><?= $profileUser-> users_age ?></li>
+                                <li class="list-group-item"><?= $profileUser-> users_login ?></li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="#" class="card-link">Supprimer</a>
+                                <a href="#" class="card-link">Modifier</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <?php
+                }
+                ?>
 
             </div>
         </div>
-<!--        //creation d'un bouton SCROLL TO TOP//-->-->
+        <!--        //creation d'un bouton SCROLL TO TOP//-->-->
         <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-circle-up"></i></button> 
 
 

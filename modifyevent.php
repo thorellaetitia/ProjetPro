@@ -27,7 +27,7 @@ include_once('controllers/controllermodifyevent.php');
         <div class="container-fluid">
             <div class="row justify-content-between mt-2">
                 <div class="btn btn-outline-warning btn-sm ml-1">
-                    <a href="index.php">Fermer</a>
+                    <a href="index.php">Retour site</a>
                 </div>
                 <div class="btn btn-outline-warning btn-sm mr-1">
                     <a href="mesevenements.php">Retour mes événements</a>

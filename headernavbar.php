@@ -31,7 +31,7 @@ include_once ('include/createanevent.php');
 if (isset($_SESSION['createEventOk'])) {
     ?>
     <div class="alert alert-warning mb-0 alert-dismissible fade show text-center" role="alert">
-        Votre évenement a été créé avec succès ! 
+        Votre évenement a été créé avec succès, il est désormais consultable sur le site !!!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -91,7 +91,8 @@ if (isset($_SESSION['inscriptionOK'])) {
 <?php if (isset($_SESSION['userconnectedOK'])) {
     ?> 
     <div class="alert alert-light mb-0 alert-dismissible fade show text-center" role = "alert">
-        Bienvenue  <?= $_SESSION['users_login'] ?> , vous êtes bien connecté !
+        Bienvenue  <?= $_SESSION['users_login'] ?> , vous êtes bien connecté(e) ! 
+        Vous pouvez désormais créer votre événement.
         <button type = "button" class = "close" data-dismiss = "alert" aria-label = "Close">
             <span aria-hidden = "true">&times;
             </span>

@@ -61,7 +61,27 @@ class users extends database { //on crée une class clients dont le parent est d
         //faire un fetch en utilisant l'objet PDO.
     }
 
-    
+    //on crée une méthode pour afficher le profil du user par son idr
+    // sur la page moncompte.php
+    public function displayUserById() {
+        //je fais ma requête dans une variable $query
+        $query = 'SELECT *' 
+                . 'FROM `poqs_users`'
+                . 'INNER JOIN `poqs_usertypes`'
+                . 'ON `poqs_users`.`usertypes_id`=`poqs_usertypes`.`usertypes_id`'
+                . 'WHERE `users_id`=`:users_id`';
+        //le résultat de ma requête je le stocke dans $resultprofileevent
+        //$this = correspond aux attributs de ma classe event, à l'élément de ma classe (table event)
+        $resultProfileUser = $this->database->prepare($query);
+        //avec le this=ATTRIBUT il faut cibler l'élément de ma classe 
+        //Je lie le marqueur nominatif id à l'attribut id
+        $resultProfileUser->bindValue(':users_id', $this->users_id, PDO::PARAM_INT);
+        $resultProfileUser->execute();
+        $arrayProfileUser = $resultProfileUser->fetchAll(PDO::FETCH_OBJ);
+        return $arrayProfileUser;
+        //le résultat = on lui demande d'aller chercher les éléments firstname,lastname...etc donc il faut 
+        //faire un fetchALL en utilisant l'objet PDO.
+    }
 
 }
 
